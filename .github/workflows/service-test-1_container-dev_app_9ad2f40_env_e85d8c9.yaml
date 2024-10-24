@@ -280,10 +280,7 @@ jobs:
               fi
               
       - name: 'Run :: Build With Docker'
-        run: >-
-          docker build -t ${{ env.IMAGE_NAME }}:${{ env.COMMIT_ID }} -f
-          ${{env.DOCKER_FILE_PATH}} --build-arg BUILT_WITH=SKYU${{
-          env.DOCKER_BUILD_ARGS }} ${{env.DOCKER_BUILD_CONTEXT}}
+        run: docker build -t docker.io/amaan02/service-test-1:v1.0.0 -f Dockerfile .
         if: ${{ env.STEPS_CAN_PROCEED == 'true' }}
       - name: 'Run :: Trivy vulnerability scanner'
         uses: aquasecurity/trivy-action@master
