@@ -252,6 +252,9 @@ jobs:
     needs:
       - _status_testing
     steps:
+      - name: 'Run :: Checkout repository'
+        uses: actions/checkout@v4
+        
       - name: 'Run :: Decoding Secrets'
         run: |2-
 
