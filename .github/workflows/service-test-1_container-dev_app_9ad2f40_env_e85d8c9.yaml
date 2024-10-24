@@ -278,12 +278,13 @@ jobs:
                 echo "Image does not exist in registry."
                 echo "STEPS_CAN_PROCEED=true" >> $GITHUB_ENV
               fi
-              
+      - name: 'ls'
+        run: ls
+
       - name: 'Run :: Build With Docker'
         run: >-
           docker build -t ${{ env.IMAGE_NAME }}:${{ env.COMMIT_ID }} -f
-          ${{env.DOCKER_FILE_PATH}} --build-arg BUILT_WITH=SKYU${{
-          env.DOCKER_BUILD_ARGS }} ${{env.DOCKER_BUILD_CONTEXT}}
+          Dockerfile .
         if: ${{ env.STEPS_CAN_PROCEED == 'true' }}
       - name: 'Run :: Trivy vulnerability scanner'
         uses: aquasecurity/trivy-action@master
