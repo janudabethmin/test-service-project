@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: env-testing-qa
+  labels:
+    environmentId: env_b59f1060-b2b5-4535-8353-c482dcb422df
+    projectId: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+    projectName: env-testing
+    environmentName: qa
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
