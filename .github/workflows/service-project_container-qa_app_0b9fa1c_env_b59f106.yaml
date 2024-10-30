@@ -1,13 +1,8 @@
 name: service-project_container-qa_app_0b9fa1c_env_b59f106 Pipeline (Skyu Generated)
 'on':
-  push:
+  pull_request:
     branches:
       - qa
-    paths-ignore:
-      - .github/workflows/**
-      - .trivyignore
-      - Readme.md
-      - README.md
   workflow_dispatch: {}
   repository_dispatch:
     types: pipeline_65fc54db-be3d-4734-9683-2472a0b89e13
