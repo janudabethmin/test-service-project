@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: api-automation-testing-staging
+  labels:
+    environmentId: env_113e76c7-d4b8-4527-b60c-e19975b3db26
+    projectId: project_8f121846-2b4f-48a5-874e-b06f0efd6c2a
+    projectName: api-automation-testing
+    environmentName: staging
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
