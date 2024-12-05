@@ -5,7 +5,7 @@ name: service-project_container-qa_app_0b9fa1c_env_b59f106 Pipeline (Skyu Genera
       - qa
   workflow_dispatch: {}
   repository_dispatch:
-    types: pipeline_188cabe5-4fd3-4475-a689-04b4ad12ce91
+    types: pipeline_b7c3786d-9296-4961-8e3a-fc5bca4f1606
 env:
   ENCODED_PIPELINE_SECRET: >-
     ${{secrets.TESTSERVICEPROJECT_SERVICEPROJECT_CONTAINERQA_APP_0B9FA1C_ENV_B59F106}}
