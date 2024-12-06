@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qa-api-atuomation-testing-v1-0-0
+  labels:
+    app: qa-api-atuomation-testing-v1-0-0
+    applicationId: app_7766100a-86e7-4ff1-99a8-8b7962be461b
+    version: v1.0.0
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    projectId: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+  annotations:
+    reloader.stakater.com/auto: 'true'
+spec:
+  selector:
+    matchLabels:
+      app: qa-api-atuomation-testing-v1-0-0
+  template:
+    metadata:
+      labels:
+        app: qa-api-atuomation-testing-v1-0-0
+        applicationId: app_7766100a-86e7-4ff1-99a8-8b7962be461b
+        version: v1.0.0
+        organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+        projectId: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6

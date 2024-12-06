@@ -1,0 +1,46 @@
+apiVersion: transformers.customplugin.co/v1
+kind: SkyUAppTransformer
+metadata:
+  name: skyu-deployment
+  annotations:
+    config.kubernetes.io/function: |
+      exec:
+        path: skyu-app-transformer
+spec:
+  applicationContainers:
+    - imageTag: latest
+      cpuRequestMili: 100
+      cpuLimitMili: 150
+      memoryRequestMb: 350
+      memoryLimitMb: 450
+      args: []
+      command: []
+      configMounts: []
+      applicationPorts: []
+      healthChecks: []
+      name: qa-api-atuomation-testing-main
+      imagePullPolicy: Always
+      imageRegistry: docker.io/qa-api-atuomation-testing
+      imagePullSecretName: imagepull-docker
+      credentialId: credential_f68ee5ec-c7d1-4266-b7a0-501a3ee0e570
+  minReplicas: 1
+  maxReplicas: 1
+  terminationGracePeriodSeconds: 60
+  nodeSelector: {}
+  suspend: false
+  ttlSecondsAfterFinished: 0
+  labels:
+    app: qa-api-atuomation-testing
+    version: v1.0.0
+    applicationId: app_7766100a-86e7-4ff1-99a8-8b7962be461b
+    projectId: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    environmentId: env_e5d8feaf-553c-4cd5-8f37-09e5b58df4be
+    environmentName: development
+  horizontalAutoScalingRules: []
+  volumes: []
+  type: Deployment
+  name: qa-api-atuomation-testing
+  serviceType: ClusterIP
+  version: v1.0.0
+  namespace: env-testing-dev
