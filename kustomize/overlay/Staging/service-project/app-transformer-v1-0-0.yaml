@@ -8,8 +8,7 @@ metadata:
         path: skyu-app-transformer
 spec:
   applicationContainers:
-    - imageTag: latest
-      cpuRequestMili: 100
+    - cpuRequestMili: 100
       cpuLimitMili: 150
       memoryRequestMb: 350
       memoryLimitMb: 450
@@ -20,7 +19,6 @@ spec:
       healthChecks: []
       name: service-project-main
       imagePullPolicy: Always
-      imageRegistry: docker.io/service-project
       imagePullSecretName: imagepull-docker
       credentialId: credential_f68ee5ec-c7d1-4266-b7a0-501a3ee0e570
   minReplicas: 1
