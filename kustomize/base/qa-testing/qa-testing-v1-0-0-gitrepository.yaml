@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: qa-testing-v1-0-0
+  labels:
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    projectId: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+    applicaitonId: app_2b49ea1d-5ca7-496e-be05-00308cc61008
+spec:
+  interval: 1m0s
+  url: https://github.com/amaan-02/test-service-project
+  ref:
+    branch: master
+  secretRef:
+    name: qa-testing-v1-0-0-secret
