@@ -1,0 +1,147 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: qa-helm-testing-2-v1-0-0
+  namespace: env-testing-production
+  labels:
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    projectId: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+    environmentId: env_9622c628-6eeb-468b-b00b-a5db2d2694a4
+    applicaitonId: app_79e507eb-5175-4252-9fb3-d7a80009740b
+spec:
+  interval: 5m0s
+  chart:
+    spec:
+      chart: Dockerfile
+      sourceRef:
+        kind: GitRepository
+        name: qa-helm-testing-2-v1-0-0
+        namespace: env-testing-production
+      valuesFiles:
+        - Dockerfile
+  values: {}
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              group: apps
+              version: v1
+              kind: Deployment
+              name: qa-helm-testing-2-v1-0-0
+            patch: |
+              - op: add
+                path: /spec/template/metadata/labels/organizationId
+                value: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+              - op: add
+                path: /spec/template/metadata/labels/projectId
+                value: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+              - op: add
+                path: /spec/template/metadata/labels/applicationId
+                value: app_79e507eb-5175-4252-9fb3-d7a80009740b
+              - op: add
+                path: /spec/template/metadata/labels/environmentId
+                value: env_9622c628-6eeb-468b-b00b-a5db2d2694a4
+              - op: add
+                path: /spec/template/metadata/labels/version
+                value: v1.0.0
+          - target: {}
+            patch: |
+              - op: add
+                path: /metadata/labels/organizationId
+                value: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+              - op: add
+                path: /metadata/labels/projectId
+                value: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+              - op: add
+                path: /metadata/labels/applicationId
+                value: app_79e507eb-5175-4252-9fb3-d7a80009740b
+              - op: add
+                path: /metadata/labels/environmentId
+                value: env_9622c628-6eeb-468b-b00b-a5db2d2694a4
+              - op: add
+                path: /metadata/labels/version
+                value: v1.0.0
+          - target:
+              group: batch
+              version: v1
+              kind: Job
+              name: qa-helm-testing-2-v1-0-0
+            patch: |
+              - op: add
+                path: /spec/template/metadata/labels/organizationId
+                value: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+              - op: add
+                path: /spec/template/metadata/labels/projectId
+                value: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+              - op: add
+                path: /spec/template/metadata/labels/applicationId
+                value: app_79e507eb-5175-4252-9fb3-d7a80009740b
+              - op: add
+                path: /spec/template/metadata/labels/environmentId
+                value: env_9622c628-6eeb-468b-b00b-a5db2d2694a4
+              - op: add
+                path: /spec/template/metadata/labels/version
+                value: v1.0.0
+          - target:
+              group: batch
+              version: v1
+              kind: CronJob
+              name: qa-helm-testing-2-v1-0-0
+            patch: |
+              - op: add
+                path: /spec/jobTemplate/metadata/labels/organizationId
+                value: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+              - op: add
+                path: /spec/jobTemplate/metadata/labels/projectId
+                value: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+              - op: add
+                path: /spec/jobTemplate/metadata/labels/applicationId
+                value: app_79e507eb-5175-4252-9fb3-d7a80009740b
+              - op: add
+                path: /spec/jobTemplate/metadata/labels/environmentId
+                value: env_9622c628-6eeb-468b-b00b-a5db2d2694a4
+              - op: add
+                path: /spec/jobTemplate/metadata/labels/version
+                value: v1.0.0
+          - target:
+              group: batch
+              version: v1
+              kind: CronJob
+              name: qa-helm-testing-2-v1-0-0
+            patch: |
+              - op: add
+                path: /spec/jobTemplate/spec/template/metadata/labels/organizationId
+                value: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+              - op: add
+                path: /spec/jobTemplate/spec/template/metadata/labels/projectId
+                value: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+              - op: add
+                path: /spec/jobTemplate/spec/template/metadata/labels/applicationId
+                value: app_79e507eb-5175-4252-9fb3-d7a80009740b
+              - op: add
+                path: /spec/jobTemplate/spec/template/metadata/labels/environmentId
+                value: env_9622c628-6eeb-468b-b00b-a5db2d2694a4
+              - op: add
+                path: /spec/jobTemplate/spec/template/metadata/labels/version
+                value: v1.0.0
+          - target:
+              group: apps
+              version: v1
+              kind: StatefulSet
+              name: qa-helm-testing-2-v1-0-0
+            patch: |
+              - op: add
+                path: /spec/template/metadata/labels/organizationId
+                value: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+              - op: add
+                path: /spec/template/metadata/labels/projectId
+                value: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+              - op: add
+                path: /spec/template/metadata/labels/applicationId
+                value: app_79e507eb-5175-4252-9fb3-d7a80009740b
+              - op: add
+                path: /spec/template/metadata/labels/environmentId
+                value: env_9622c628-6eeb-468b-b00b-a5db2d2694a4
+              - op: add
+                path: /spec/template/metadata/labels/version
+                value: v1.0.0
