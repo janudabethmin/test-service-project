@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: service-project-test-ingress
+  namespace: env-testing-qa
+  annotations:
+    skyu.io/ingress.cert: private
+    skyu.io/ingress.provider: nginx
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/affinity-mode: balanced
+    nginx.ingress.kubernetes.io/backend-protocol: http
+    nginx.ingress.kubernetes.io/permanent-redirect-code: '301'
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+    nginx.ingress.kubernetes.io/session-cookie-hash: sha1
+    nginx.ingress.kubernetes.io/session-cookie-name: route
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
+    nginx.ingress.kubernetes.io/whitelist-source-range: 0.0.0.0/0
+  labels:
+    organizationId: org_6de1b366-9da6-4d55-b363-f5a2c4382016
+    projectId: project_6665615c-77bd-4dc5-9bb1-37ca0b0f19e6
+    applicationId: app_0b9fa1cc-ab6f-475d-8b8c-b1f6534627dd
+    environmentId: env_b59f1060-b2b5-4535-8353-c482dcb422df
+spec:
+  tls:
+    - secretName: test-1
+      hosts:
+        - '8080'
+  rules:
+    - host: '8080'
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: service-project-v1-0-0
+                port:
+                  number: 80
