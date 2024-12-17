@@ -12,7 +12,7 @@ name: >-
       - README.md
   workflow_dispatch: {}
   repository_dispatch:
-    types: pipeline_c5c47c13-1120-4b53-9e6e-0bc5caee17b5
+    types: pipeline_062f0119-5d78-47ab-b787-01acd1d4e796
 env:
   ENCODED_PIPELINE_SECRET: >-
     ${{secrets.TESTSERVICEPROJECT_QATEAMPROJECT_CONTAINERDEV_APP_AAC5AAB_ENV_D3C9B73}}
