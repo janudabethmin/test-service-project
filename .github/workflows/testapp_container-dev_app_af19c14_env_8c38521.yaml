@@ -1,11 +1,8 @@
-name: >-
-  transferonwershipapp1_container-staging_app_157688f_env_2efe144 Pipeline (Skyu
-  Generated)
+name: testapp_container-dev_app_af19c14_env_8c38521 Pipeline (Skyu Generated)
 'on':
   push:
     branches:
-      - staging
-      - release/*
+      - master
     paths-ignore:
       - .github/workflows/**
       - .trivyignore
@@ -13,10 +10,9 @@ name: >-
       - README.md
   workflow_dispatch: {}
   repository_dispatch:
-    types: pipeline_c25d13de-df4b-4200-8ca5-1ca41e9803dd
+    types: pipeline_2b100296-34b0-4bcf-b69b-145a55a1f709
 env:
-  ENCODED_PIPELINE_SECRET: >-
-    ${{secrets.TESTSERVICE2_TRANSFERONWERSHIPAPP1_CONTAINERSTAGING_APP_157688F_ENV_2EFE144}}
+  ENCODED_PIPELINE_SECRET: ${{secrets.TESTSERVICE2_TESTAPP_CONTAINERDEV_APP_AF19C14_ENV_8C38521}}
   COMMIT_ID: ${{github.event.client_payload.commitId || github.sha || github.run_id}}
   BRANCH_NAME: >-
     ${{github.event.client_payload.branchName || github.event.branch ||
@@ -97,6 +93,7 @@ jobs:
     env:
       CONTEXT_JSON: ${{ toJson(github) }}
     runs-on: ubuntu-latest
+    needs: []
     steps:
       - name: 'Run :: Start'
         run: |2-
@@ -224,6 +221,7 @@ jobs:
     name: ' Release Info'
     permissions: write-all
     runs-on: ubuntu-latest
+    needs: []
     if: ${{ github.event.client_payload.releaseData }}
     steps:
       - name: 'Run :: Start'
@@ -369,15 +367,10 @@ jobs:
                 fi
                 echo "${{ env.ENCODED_PIPELINE_SECRET }}" | base64 --decode | jq -r 'to_entries[] | "\(.key)=\(.value)"' | while read line; do echo "$line" >> $GITHUB_ENV; echo "::add-mask::${line#*=}"; done
                 
-      - name: 'Run :: Configure AWS credentials'
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ env.roleARN }}
-          role-session-name: skyu-pipeline-assume-role-session
-          aws-region: ${{ env.region }}
-      - name: 'Run :: Login to Amazon ECR'
-        id: skyu-login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+      - name: 'Run :: Login to Dockerhub'
+        run: >-
+          echo "${{ env.DOCKER_PASSWORD }}" | docker login -u "${{
+          env.DOCKER_USERNAME }}" --password-stdin docker.io
       - name: 'Run :: Check if image already exists'
         id: check-image-existence-step-id
         run: |2-
@@ -482,11 +475,6 @@ jobs:
                 echo "SAFE to continue Pipeline"
               fi
               
-      - name: 'Run :: Create Repository'
-        run: >-
-          aws ecr create-repository --repository-name ${{ env.REPOSITORY_NAME }}
-          || true
-        if: ${{ env.STEPS_CAN_PROCEED == 'true' }}
       - name: 'Run :: Build, tag, and push image'
         run: docker push ${{ env.IMAGE_NAME }}:${{ env.COMMIT_ID }}
         if: ${{ env.STEPS_CAN_PROCEED == 'true' }}
